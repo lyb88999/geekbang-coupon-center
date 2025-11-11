@@ -6,6 +6,8 @@ import com.yubolee.coupon.template.api.beans.CouponTemplateInfo;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.extern.slf4j.Slf4j;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
@@ -65,7 +67,7 @@ public abstract class AbstractRuleTemplate implements RuleTemplate{
     }
 
     // 计算订单总价
-    private Long getTotalPrice(@NotEmpty List<Product> products) {
+    protected Long getTotalPrice(@NotEmpty List<Product> products) {
         return products.stream()
                 .mapToLong(product -> product.getPrice() * product.getCount())
                 .sum();
@@ -74,5 +76,9 @@ public abstract class AbstractRuleTemplate implements RuleTemplate{
     // 每个订单最少必须支付1分钱
     protected long minCost() {
         return 1L;
+    }
+
+    protected Long convertToDecimal(Double value){
+        return new BigDecimal(value).setScale(0, RoundingMode.HALF_UP).longValue();
     }
 }
