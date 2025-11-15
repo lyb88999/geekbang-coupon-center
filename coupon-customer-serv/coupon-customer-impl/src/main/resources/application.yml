@@ -33,7 +33,50 @@ spring:
       hibernate.format_sql: true
     open-in-view: false
 
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 172.18.4.125:8848, 172.18.4.125:8948
+        service: coupon-customer-serv
+        heart-beat-timeout: 20000
+        heart-beat-interval: 5000
+
+        naming-load-cache-at-start: false
+        namespace: dev
+        cluster-name: Cluster-A
+        group: DEFAULT_GROUP
+        register-enabled: true
+        username: nacos
+        password: Lyb1217..
+        enabled: true
+        # 添加网络连接相关配置
+        watch-delay: 30000
+        remote:
+          client:
+            connect-timeout: 5000
+            read-timeout: 5000
+    loadbalancer:
+      nacos:
+        enabled: true
+    openfeign:
+      client:
+        config:
+          # 全局超时配置
+          default:
+            # 网络连接阶段1s超时
+            connect-timeout: 1000
+            # 服务请求响应阶段5s超时
+            read-timeout: 5000
+          # 针对某个服务的超时配置
+          coupon-template-serv:
+            connect-timeout: 1000
+            read-timeout: 2000
+      circuitbreaker:
+        enabled: true
+
 logging:
   level:
-    com.broadview.coupon: debug
+    com.alibaba.nacos: debug
+    com.yubolee.coupon.customer.feign.TemplateService: debug
+    com.yubolee.coupon.customer.feign.CalculationService: debug
 

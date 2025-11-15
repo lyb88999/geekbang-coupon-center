@@ -1,2 +1,19 @@
 server:
   port: 8081
+
+spring:
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 172.18.4.125:8848, 172.18.4.125:8948
+        service: coupon-calculation-serv
+        heart-beat-timeout: 20000
+        heart-beat-interval: 5000
+
+        naming-load-cache-at-start: false
+        namespace: dev
+        cluster-name: Cluster-A
+        group: DEFAULT_GROUP
+        register-enabled: true
+        username: nacos
+        password: Lyb1217..
