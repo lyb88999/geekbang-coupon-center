@@ -1,0 +1,23 @@
+spring:
+  application:
+    name: coupon-customer-serv
+  cloud:
+    nacos:
+      config:
+        server-addr: 172.18.4.125:8848
+        file-extension: yml
+        namespace: dev
+        group: DEFAULT_GROUP
+        timeout: 5000
+        config-long-poll-timeout: 10000
+        config-retry-time: 2000
+        max-retry: 3
+        refresh-enabled: true
+        username: nacos
+        password: Lyb1217..
+
+  config:
+    import:
+      - optional:nacos:coupon-customer-serv.yml?group=DEFAULT_GROUP
+      - optional:nacos:redis-config.yml?group=EXT_GROUP
+      - optional:nacos:rabbitmq-config.yml?group=EXT_GROUP
