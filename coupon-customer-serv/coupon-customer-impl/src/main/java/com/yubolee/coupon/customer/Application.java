@@ -14,7 +14,8 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
         "com.yubolee.coupon.customer.controller",
         "com.yubolee.coupon.template.dao",
         "com.yubolee.coupon.customer.config",
-        "com.yubolee.coupon.customer.feign"})
+        "com.yubolee.coupon.customer.feign",
+        "com.yubolee.coupon.customer.interceptor"}) // 添加这一行
 @EnableJpaRepositories(basePackages = {"com.yubolee.coupon.customer.dao",
         "com.yubolee.coupon.template.dao"})
 @EntityScan(basePackages = {"com.yubolee.coupon.template.dao.eneity",

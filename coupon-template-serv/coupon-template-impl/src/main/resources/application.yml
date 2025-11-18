@@ -1,5 +1,5 @@
 server:
-  port: 8080
+  port: 8082
 spring:
   application:
     name: coupon-template-serv
@@ -41,3 +41,10 @@ spring:
         register-enabled: true
         username: nacos
         password: Lyb1217..
+    sentinel:
+      transport:
+        dashboard: 172.18.4.125:8080
+        port: 8080
+      eager: true
+
+
